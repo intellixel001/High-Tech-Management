@@ -1,81 +1,117 @@
 "use client";
 import React from "react";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
 import SplitText from "../ui/SplitText";
 import BlurText from "../ui/BlurText";
 
+const socialLinks = [
+  { icon: <FaFacebookF />, href: "https://www.facebook.com" },
+  { icon: <FaInstagram />, href: "https://www.instagram.com" },
+  { icon: <FaLinkedinIn />, href: "https://www.linkedin.com" },
+  { icon: <FaTwitter />, href: "https://www.twitter.com" },
+];
+
+const footerLinks = [
+  { name: "Home", href: "/" },
+  { name: "Projects", href: "/projects" },
+  { name: "Services", href: "/services" },
+  { name: "Contact", href: "/contact" },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 text-black py-10 px-6 lg:px-5">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Left Column - Business Info */}
+    <footer className="bg-gray-100 text-gray-900 py-12 px-6 lg:px-12">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Left Column - Info */}
         <div className="space-y-6">
           <div className="text-3xl uppercase font-bold font-mono">
             <SplitText
-              text={`HAMA CON BUILDING INSPECTIONS`}
-              className="text-center"
+              text="HAMA CON BUILDING INSPECTIONS"
+              className="text-left md:text-left"
               delay={20}
               heighlightsword={[2, 4]}
-              heighlightclass={"text-[#D0A102]"}
+              heighlightclass="text-[#D0A102]"
             />
           </div>
-          <div className="text-lg font-work mb-8">
+          <div className="text-lg font-work">
             <BlurText
-              text={
-                "Sydney's expert building inspection service. 10+ years experience. Same-day reports."
-              }
+              text="Sydney's expert building inspection service. 10+ years experience. Same-day reports."
               className="!text-left"
               delay={200}
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <Link href="tel:+610428278835">
-              <p className="text-[#D0A102] font-work font-bold text-lg">
-                +610428278835
+              <p className="text-[#D0A102] font-bold text-lg cursor-pointer">
+                +61 0428 278 835
               </p>
             </Link>
-            <p>19 Burton Avenue Chesterhill 2162 NSW Australia</p>
+            <p>19 Burton Avenue, Chesterhill 2162 NSW, Australia</p>
 
-            <div className="flex items-center space-x-4  cursor-pointer">
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:text-gray-700 transition"
-              >
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  size="lg"
-                  className="hover:scale-105"
-                />
-              </a>
-              <span className="text-sm font-work">Follow us</span>
+            <div className="flex items-center space-x-4 mt-4">
+              {socialLinks.map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 hover:text-[#D0A102] transition text-lg"
+                >
+                  {link.icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Right Column - Map */}
-        <div className="h-64 md:h-full w-full hover:!scale-105 transition-all duration-500 ">
+        {/* Middle Column - Links */}
+        <div className="space-y-6">
+          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            {footerLinks.map((link, idx) => (
+              <li key={idx}>
+                <Link
+                  href={link.href}
+                  className="hover:text-[#D0A102] transition"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Right Column - Map Placeholder */}
+        <div className="h-64 md:h-full w-full rounded-lg overflow-hidden shadow-md">
+          {/* Uncomment iframe to enable Google Map */}
           {/* <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.4139249273417!2d151.0050435!3d-33.878992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bc55eb40a06f%3A0x3f535381f3a981ae!2s19%20Burton%20Ave%2C%20Chester%20Hill%20NSW%202162%2C%20Australia!5e0!3m2!1sen!2sbd!4v1752845207828!5m2!1sen!2sbd"
+            src="https://www.google.com/maps/embed?pb=..."
             width="100%"
             height="100%"
-            className="rounded-lg opacity-90 hover:opacity-100  "
+            className="rounded-lg"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
-            title="Hama Con Building Inspections Map"
+            title="Hama Con Map"
           /> */}
+          <div className="flex items-center justify-center h-full text-gray-500 italic">
+            Map will appear here
+          </div>
         </div>
       </div>
 
-      {/* Copyright Notice */}
-      <div className="max-w-[1320px] flex items-center justify-center mx-auto ">
-        <p className="text-gray-400 font-work text-sm">
-          © 2025 Hama Con Building Inspections. All rights reserved.
+      {/* Bottom - Copyright */}
+      <div className="max-w-6xl mx-auto mt-10 text-center">
+        <p className="text-gray-500 text-sm">
+          © {new Date().getFullYear()} Hama Con Building Inspections. All rights
+          reserved.
         </p>
       </div>
     </footer>

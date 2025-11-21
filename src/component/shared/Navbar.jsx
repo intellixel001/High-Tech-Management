@@ -1,105 +1,36 @@
-// "use client";
-// import React from "react";
-// import Link from "next/link";
-// import { useState } from "react";
-
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-
-//   const menuItems = [
-//     { name: "Home", path: "/" },
-//     { name: "About", path: "/about" },
-//     { name: "Services", path: "/service" },
-//     { name: "Project", path: "/project" },
-//     { name: "Contact", path: "/contact" },
-//   ];
-//   return (
-//     <nav className="bg-[#0C2845] dark:bg-gray-900 shadow-md fixed w-full z-50">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex justify-between items-center h-16">
-//           {/* Logo */}
-//           <Link
-//             href="/"
-//             className="text-2xl font-bold text-blue-600 dark:text-white"
-//           >
-//             <img className="w-[100px]" src="/logo.png" alt="logo" />
-//           </Link>
-
-//           {/* Desktop Menu */}
-//           <div className="hidden md:flex space-x-6">
-//             {menuItems.map((item) => (
-//               <Link
-//                 key={item.name}
-//                 href={item.path}
-//                 className="text-gray-700 dark:text-gray-200 hover:text-blue-600 transition"
-//               >
-//                 {item.name}
-//               </Link>
-//             ))}
-//           </div>
-
-//           {/* Mobile Menu Button */}
-//           <div className="md:hidden">
-//             <button
-//               onClick={() => setOpen(!open)}
-//               className="text-gray-700 dark:text-gray-200"
-//             ></button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {open && (
-//         <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-//           <div className="px-4 py-3 space-y-2">
-//             {menuItems.map((item) => (
-//               <Link
-//                 key={item.name}
-//                 href={item.path}
-//                 onClick={() => setOpen(false)}
-//                 className="block text-gray-700 dark:text-gray-200 hover:text-blue-600 transition"
-//               >
-//                 {item.name}
-//               </Link>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { IoClose, IoMenu } from "react-icons/io5";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navItems = [
-  { id: "Home", href: "/landing-page" },
+  { id: "Home", href: "/" },
   { id: "About", href: "/about" },
   {
     id: "Services",
-    href: "/services",
+    href: "/service",
     subLinks: [
-      { id: "Building Inspector", href: "/services/building-inspector" },
-      { id: "Building and Pest Inspections", href: "/services/building-pest" },
-      { id: "New Home Inspection", href: "/services/new-home" },
+      { id: "Building Inspector", href: "/service/building-inspector" },
+      { id: "Building and Pest Inspections", href: "/service/building-pest" },
+      { id: "New Home Inspection", href: "/service/new-home" },
       {
         id: "Pre Purchase Building Inspections",
-        href: "/services/pre-purchase",
+        href: "/service/pre-purchase",
       },
-      { id: "Pre Sale Building Inspection", href: "/services/pre-sale" },
-      { id: "Pre Auction Building Inspection", href: "/services/pre-auction" },
+      { id: "Pre Sale Building Inspection", href: "/service/pre-sale" },
+      { id: "Pre Auction Building Inspection", href: "/service/pre-auction" },
       {
         id: "Practical Completion Inspection",
-        href: "/services/practical-completion",
+        href: "/service/practical-completion",
       },
-      { id: "Residential Building Inspections", href: "/services/residential" },
+      { id: "Residential Building Inspections", href: "/service/residential" },
     ],
   },
-  { id: "CoreLogic Report", href: "/coreLogicReport" },
+  { id: "CoreLogic Report", href: "/project" },
   { id: "FAQs", href: "/faq" },
 ];
 
@@ -223,7 +154,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <Link href="//#inspectionForm">
+          <Link href="/contact">
             <button className="px-3 cursor-pointer py-1.5 rounded-md bg-gray-900 text-amber-400 border border-amber-400/30 hover:bg-black hover:border-amber-400/50 transition-all duration-300 font-work-sans font-medium shadow-lg hover:shadow-amber-400/20 active:scale-95 text-xs sm:text-sm lg:text-base">
               Quick Quote
             </button>
@@ -234,9 +165,9 @@ export default function Navbar() {
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-white">
             {menuOpen ? (
-              <X className="w-6 h-6" />
+              <IoClose className="w-6 h-6" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <IoMenu className="w-6 h-6" />
             )}
           </button>
         </div>
